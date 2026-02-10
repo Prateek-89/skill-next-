@@ -1,0 +1,17 @@
+{
+  "name": "skillnest-platform-root",
+  "version": "1.0.0",
+  "description": "Root package for deployment handling",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd server && npm install",
+    "build-server": "cd server && npm install",
+    "start": "cd server && npm start",
+    "dev": "cd server && npm run dev"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

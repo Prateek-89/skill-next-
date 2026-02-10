@@ -1,0 +1,23 @@
+services:
+  # Backend Service
+  - type: web
+    name: skillnest-backend
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  # Frontend Static Site (Optional, usually Vercel is better)
+  # - type: static
+  #   name: skillnest-frontend
+  #   env: static
+  #   rootDir: client
+  #   buildCommand: npm install && npm run build
+  #   staticPublishPath: ./dist
