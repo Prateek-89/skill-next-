@@ -8,7 +8,7 @@ A production-ready, full-stack learning management system built with modern web 
 
 ---
 
-## 📋 Executive Summary
+## Executive Summary
 
 SkillNext is a comprehensive online learning platform designed with a focus on user experience, clean architecture, and scalability. The platform supports both student and admin roles with distinct workflows, JWT-based authentication, MongoDB data persistence, and deployment-ready infrastructure.
 
@@ -21,7 +21,7 @@ SkillNext is a comprehensive online learning platform designed with a focus on u
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ### Technology Stack
 
@@ -122,7 +122,7 @@ skillnest-platform/
 
 ---
 
-## 🚀 Getting Started
+### Getting Started
 
 ### Prerequisites
 - **Node.js**: v18 or higher
@@ -214,7 +214,7 @@ npm run dev
 
 ---
 
-## 🔐 Authentication & Security
+### Authentication & Security
 
 ### Authentication Flow
 
@@ -477,7 +477,7 @@ className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-gray
 
 ---
 
-## 🧪 Testing & Validation
+### Testing & Validation
 
 ### Frontend Testing
 
@@ -522,7 +522,7 @@ npm run build
 
 ---
 
-## 📦 Build & Deployment
+### Build & Deployment
 
 ### Local Build
 
@@ -577,7 +577,7 @@ NODE_ENV=production
 
 ---
 
-## 🔧 Configuration Files
+### Configuration Files
 
 ### Frontend Configuration
 
@@ -594,7 +594,7 @@ NODE_ENV=production
 
 ---
 
-## 🐛 Troubleshooting
+### Troubleshooting
 
 ### Issue: "Cannot connect to MongoDB"
 **Solution:**
@@ -627,7 +627,7 @@ NODE_ENV=production
 
 ---
 
-## 📚 Code Standards & Best Practices
+### Code Standards & Best Practices
 
 ### Frontend Code Patterns
 
@@ -698,7 +698,7 @@ router.post('/courses', authMiddleware, (req, res) => {
 
 ---
 
-## 🚢 Production Checklist
+### Production Checklist
 
 - [ ] Environment variables configured (no hardcoded secrets)
 - [ ] Build passes without errors (`npm run build`)
@@ -714,7 +714,7 @@ router.post('/courses', authMiddleware, (req, res) => {
 
 ---
 
-## 📞 Support & Documentation
+### Support & Documentation
 
 For detailed information on specific components:
 
@@ -725,13 +725,13 @@ For detailed information on specific components:
 
 ---
 
-## 📄 License
+## License
 
 This project is created for educational and assignment purposes.
 
 ---
 
-## 👤 Author
+## Author
 
 Created as a professional learning platform project.
 
