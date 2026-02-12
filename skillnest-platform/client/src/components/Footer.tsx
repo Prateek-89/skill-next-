@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-200 pt-6 text-center text-sm text-gray-600">
-          © {new Date().getFullYear()} Courses Platform. All rights reserved.
+          © {new Date().getFullYear()} SkillNext. All rights reserved.
         </div>
       </div>
     </footer>

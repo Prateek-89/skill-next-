@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-8">
             <Link to="/" className="text-lg font-semibold text-gray-900">
-              Courses
+              SkillNext
             </Link>
             <div className="hidden sm:flex gap-6">
               <Link to="/" className="text-sm text-gray-600 hover:text-gray-900">

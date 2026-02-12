@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const LandingPage = () => {
+  const { isAuthenticated, isAdmin } = useAuth();
   return (
     <div className="bg-white">
       {/* Introduction Section */}
@@ -19,12 +21,22 @@ const LandingPage = () => {
             >
               Browse Courses
             </Link>
-            <Link
-              to="/register"
-              className="px-6 py-2 bg-white border border-gray-300 text-gray-900 rounded hover:bg-gray-50 text-sm font-medium"
-            >
-              Get Started
-            </Link>
+            {!isAuthenticated && (
+              <Link
+                to="/register"
+                className="px-6 py-2 bg-white border border-gray-300 text-gray-900 rounded hover:bg-gray-50 text-sm font-medium"
+              >
+                Get Started
+              </Link>
+            )}
+            {isAuthenticated && (
+              <Link
+                to={isAdmin ? "/admin/dashboard" : "/dashboard"}
+                className="px-6 py-2 bg-white border border-gray-300 text-gray-900 rounded hover:bg-gray-50 text-sm font-medium"
+              >
+                {isAdmin ? "Go to Admin" : "My Learning"}
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -69,18 +81,20 @@ const LandingPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gray-50 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to start learning?</h2>
-          <p className="text-gray-600 mb-6">Sign up for free and explore our course collection today.</p>
-          <Link
-            to="/register"
-            className="inline-block px-6 py-2 bg-gray-900 text-white rounded hover:bg-gray-800 font-medium"
-          >
-            Sign up now
-          </Link>
+      {!isAuthenticated && (
+        <div className="bg-gray-50 border-t border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to start learning?</h2>
+            <p className="text-gray-600 mb-6">Sign up for free and explore our course collection today.</p>
+            <Link
+              to="/register"
+              className="inline-block px-6 py-2 bg-gray-900 text-white rounded hover:bg-gray-800 font-medium"
+            >
+              Sign up now
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
