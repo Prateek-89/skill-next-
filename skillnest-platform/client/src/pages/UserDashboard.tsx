@@ -4,7 +4,6 @@ import api from '../services/api';
 import CourseCard from '../components/CourseCard';
 import Loader from '../components/Loader';
 import { useAuth } from '../context/AuthContext';
-import { BookOpen, Clock, Award, TrendingUp, Calendar, Target } from 'lucide-react';
 
 const UserDashboard = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
@@ -57,104 +56,70 @@ const UserDashboard = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Welcome Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Welcome back, {user?.name}! 👋
-        </h1>
-        <p className="mt-2 text-gray-600 text-lg">Continue your learning journey</p>
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome, {user?.name}</h1>
+        <p className="text-sm text-gray-600">Your learning progress and enrolled courses</p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-blue-100 text-sm font-medium">Enrolled Courses</p>
-              <p className="text-3xl font-bold mt-2">{totalCourses}</p>
-            </div>
-            <BookOpen className="h-12 w-12 opacity-80" />
-          </div>
+      {/* Simple Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div className="border border-gray-200 rounded p-4">
+          <p className="text-3xl font-bold text-gray-900">{totalCourses}</p>
+          <p className="text-xs text-gray-600 mt-1">Enrolled</p>
         </div>
-
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-purple-100 text-sm font-medium">Total Hours</p>
-              <p className="text-3xl font-bold mt-2">{totalHours}h</p>
-            </div>
-            <Clock className="h-12 w-12 opacity-80" />
-          </div>
+        <div className="border border-gray-200 rounded p-4">
+          <p className="text-3xl font-bold text-gray-900">{totalHours}h</p>
+          <p className="text-xs text-gray-600 mt-1">Total hours</p>
         </div>
-
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-green-100 text-sm font-medium">In Progress</p>
-              <p className="text-3xl font-bold mt-2">{inProgressCourses}</p>
-            </div>
-            <TrendingUp className="h-12 w-12 opacity-80" />
-          </div>
+        <div className="border border-gray-200 rounded p-4">
+          <p className="text-3xl font-bold text-gray-900">{inProgressCourses}</p>
+          <p className="text-xs text-gray-600 mt-1">In progress</p>
         </div>
-
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-orange-100 text-sm font-medium">Completion Rate</p>
-              <p className="text-3xl font-bold mt-2">{completionRate}%</p>
-            </div>
-            <Target className="h-12 w-12 opacity-80" />
-          </div>
+        <div className="border border-gray-200 rounded p-4">
+          <p className="text-3xl font-bold text-gray-900">{completionRate}%</p>
+          <p className="text-xs text-gray-600 mt-1">Completion rate</p>
         </div>
       </div>
 
-      {/* My Enrolled Courses */}
-      <div className="mb-8">
+      {/* My Courses */}
+      <div className="mb-10">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-            <BookOpen className="h-6 w-6 mr-2 text-blue-600" />
-            My Enrolled Courses
-          </h2>
+          <h2 className="text-lg font-bold text-gray-900">My Courses</h2>
           <Link 
             to="/courses" 
-            className="text-blue-600 hover:text-blue-700 font-medium flex items-center"
+            className="text-sm text-gray-600 hover:text-gray-900"
           >
-            Browse All Courses
-            <span className="ml-1">→</span>
+            Browse all →
           </Link>
         </div>
 
         {loading ? (
           <Loader />
         ) : enrolledCourses.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-3">
             {enrolledCourses.map((course: any) => (
               course ? <CourseCard key={course._id} course={course} /> : null
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-lg p-12 text-center border-2 border-dashed border-gray-200">
-            <BookOpen className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Start Your Learning Journey</h3>
-            <p className="text-gray-500 mb-6">You haven't enrolled in any courses yet. Explore our catalog to get started!</p>
+          <div className="border-2 border-dashed border-gray-200 rounded p-8 text-center">
+            <h3 className="font-semibold text-gray-900 mb-2">No courses yet</h3>
+            <p className="text-sm text-gray-600 mb-4">Browse courses to get started.</p>
             <Link 
               to="/courses" 
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+              className="inline-block px-4 py-2 bg-gray-900 text-white text-sm rounded hover:bg-gray-800"
             >
-              Explore Courses
+              Browse Courses
             </Link>
           </div>
         )}
       </div>
 
-      {/* Recommended Courses */}
+      {/* Recommended */}
       {recommendedCourses.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            <Award className="h-6 w-6 mr-2 text-purple-600" />
-            Recommended for You
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mb-10">
+          <h2 className="text-lg font-bold text-gray-900 mb-6">Recommended</h2>
+          <div className="space-y-3">
             {recommendedCourses.map((course: any) => (
               <CourseCard key={course._id} course={course} />
             ))}
@@ -162,23 +127,19 @@ const UserDashboard = () => {
         </div>
       )}
 
-      {/* Learning Progress */}
+      {/* Progress Bar */}
       {enrolledCourses.length > 0 && (
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-100">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <Calendar className="h-5 w-5 mr-2 text-blue-600" />
-              Your Learning Progress
-            </h3>
-            <span className="text-sm text-gray-600">{completedCourses} of {totalCourses} completed</span>
+        <div className="border border-gray-200 rounded p-6">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-semibold text-gray-900">Progress</h3>
+            <span className="text-xs text-gray-600">{completedCourses} of {totalCourses} completed</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+          <div className="w-full bg-gray-200 rounded h-2">
             <div 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full transition-all duration-500"
+              className="bg-gray-900 h-2 rounded transition-all duration-500"
               style={{ width: `${completionRate}%` }}
             ></div>
           </div>
-          <p className="text-sm text-gray-600">Keep up the great work! You're making excellent progress.</p>
         </div>
       )}
     </div>

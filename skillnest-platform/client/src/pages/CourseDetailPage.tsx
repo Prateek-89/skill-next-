@@ -4,7 +4,6 @@ import api from '../services/api';
 import Loader from '../components/Loader';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { Clock, DollarSign, User as UserIcon, Calendar } from 'lucide-react';
 
 const CourseDetailPage = () => {
   const { id } = useParams();
@@ -58,65 +57,48 @@ const CourseDetailPage = () => {
 
   return (
     <div className="bg-white min-h-screen">
-       <div className="bg-gray-900 text-white py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{course.title}</h1>
-            <p className="text-xl text-gray-300 mb-6 max-w-3xl">{course.description}</p>
-            <div className="flex flex-wrap gap-6 text-sm">
-                <div className="flex items-center">
-                    <UserIcon className="h-5 w-5 mr-2" />
-                    <span>Instructor: {course.instructor}</span>
-                </div>
-                <div className="flex items-center">
-                    <Clock className="h-5 w-5 mr-2" />
-                    <span>{course.duration}</span>
-                </div>
-                 <div className="flex items-center">
-                    <Calendar className="h-5 w-5 mr-2" />
-                    <span>Last Updated: {new Date().toLocaleDateString()}</span>
-                </div>
-            </div>
-          </div>
-       </div>
-
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-             <div className="md:col-span-2 space-y-8">
-                <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-                   <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Course</h2>
-                   <div className="prose max-w-none text-gray-700">
-                      <p>{course.description}</p>
-                      {/* More placeholder content could make it look richer */}
-                      <p className="mt-4">
-                        In this course, you will learn everything you need to know about {course.title}. 
-                        This comprehensive curriculum is designed for students of all levels.
-                      </p>
-                   </div>
+             <div className="md:col-span-2">
+                <h1 className="text-2xl font-bold text-gray-900 mb-4">{course.title}</h1>
+                <p className="text-gray-600 mb-6">{course.description}</p>
+                
+                <div className="border border-gray-200 rounded p-4 mb-8 space-y-3 text-sm text-gray-600">
+                  <div><strong>Instructor:</strong> {course.instructor}</div>
+                  <div><strong>Duration:</strong> {course.duration}</div>
+                  <div><strong>Last Updated:</strong> {new Date().toLocaleDateString()}</div>
+                </div>
+
+                <div className="bg-gray-50 border border-gray-200 rounded p-6">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-3">About This Course</h2>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    {course.description}
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed mt-3">
+                    In this course, you will learn everything you need to know about {course.title}. 
+                    This comprehensive curriculum is designed for students of all levels.
+                  </p>
                 </div>
              </div>
 
-             <div className="md:col-span-1">
-                 <div className="bg-white rounded-lg shadow-md p-6 sticky top-24 border border-gray-200">
+             <div>
+                 <div className="border border-gray-200 rounded p-6 sticky top-24">
                     <img 
                        src={course.thumbnail || 'https://via.placeholder.com/300x200?text=Course'} 
                        alt={course.title} 
-                       className="w-full h-48 object-cover rounded-md mb-6"
+                       className="w-full h-40 object-cover rounded mb-4"
                     />
-                    <div className="flex items-center justify-between mb-6"> 
-                        <span className="text-3xl font-bold text-gray-900 flex items-center">
-                            <DollarSign className="h-6 w-6" />{course.price}
-                        </span>
-                        <span className="text-gray-500 line-through text-sm">$999</span>
+                    <div className="mb-6 border-t border-b border-gray-200 py-4">
+                        <div className="text-3xl font-bold text-gray-900">${course.price}</div>
                     </div>
 
                     <button
                        onClick={handleEnroll}
                        disabled={enrolling}
-                       className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300 disabled:opacity-75"
+                       className="w-full bg-gray-900 text-white font-medium py-2 px-4 rounded hover:bg-gray-800 disabled:opacity-60"
                     >
-                       {enrolling ? 'Enrolling...' : 'Enroll Now'}
+                       {enrolling ? 'Enrolling...' : 'Enroll'}
                     </button>
-                    <p className="text-xs text-center text-gray-500 mt-4">30-Day Money-Back Guarantee</p>
                  </div>
              </div>
           </div>
