@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://skillnest-backend.onrender.com/api/$1" },
+    { "source": "/api/(.*)", "destination": "https://skill-next-3.onrender.com/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
